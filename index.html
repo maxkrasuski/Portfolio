@@ -24,30 +24,12 @@
             line-height: 1.6;
             background-color: #fff;
             scroll-behavior: smooth;
+            overflow-x: hidden; /* Stops horizontal scrolling/white space */
         }
 
         p { margin-bottom: 1rem; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* --- UTILITIES --- */
         .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 4px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            border: 2px solid var(--primary);
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .section-padding { padding: 30px 0; }
-        
-        h1, h2, h3 { color: var(--secondary); margin-bottom: 15px; }
 
         /* --- NAVIGATION --- */
         nav {
@@ -58,33 +40,19 @@
             top: 0;
             z-index: 1000;
         }
-
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             height: 80px;
         }
-
-        .logo-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .pga-logo-nav { height: 40px; width: auto; }
-
-        .logo {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--secondary);
-            letter-spacing: 1px;
-        }
-
+        .logo-group { display: flex; align-items: center; gap: 15px; }
+        .pga-logo-nav { height: 50px; width: auto; }
+        .logo { font-size: 1.1rem; font-weight: 700; color: var(--secondary); letter-spacing: 1px; }
         .nav-links { display: flex; align-items: center; }
         .nav-links a {
-            margin-left: 20px;
-            font-size: 0.75rem;
+            margin-left: 25px;
+            font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
             color: var(--secondary);
@@ -94,113 +62,138 @@
         .hero {
             position: relative;
             width: 100%;
-            min-height: 500px;
-            height: 80vh; 
+            height: 90vh; 
             background: #000;
+            display: flex;
+            align-items: center;
             overflow: hidden;
             padding-top: 80px;
         }
-
-        .hero-video-bg {
+        .video-wrapper {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            transform: translate(-50%, -50%);
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 1;
+        }
+        .hero-video-bg {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
-
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); 
+            background: rgba(0, 0, 0, 0.25); 
             z-index: 2;
         }
-
         .hero-content-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: relative;
             z-index: 3;
-            display: flex;
-            align-items: center;
+            width: 100%;
         }
-
         .hero-content {
             color: #fff;
-            width: 100%;
-            text-align: right; 
+            max-width: 900px;
+            text-align: right;
+            margin-left: auto;
         }
-
         .hero-content h1 {
-            font-size: 3rem;
-            color: #fff;
+            font-size: 3.5rem;
             line-height: 1.1;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
-
         .pga-member-line {
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            vertical-align: middle;
+            justify-content: flex-end;
         }
+        .hero-pga-logo { height: 60px; width: auto; }
+        .hero-content p { font-size: 1.4rem; margin-top: 20px; text-shadow: 1px 1px 5px rgba(0,0,0,0.8); }
 
-        .hero-pga-logo {
-            height: 50px;
-            width: auto;
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            padding: 14px 35px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
         }
+        .download-callout { background: var(--light); padding: 40px 0; text-align: center; border-bottom: 1px solid #eee; }
 
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-top: 15px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
-        }
-
-        /* --- DOWNLOAD BUTTON AREA --- */
-        .download-callout {
-            background: var(--light);
-            padding: 40px 0;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        /* --- PILLAR ROWS --- */
+        /* --- CONTENT PILLARS --- */
+        .section-padding { padding: 80px 0; }
         .pillar-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 80px;
         }
+        .pillar-row.reverse .text-col { order: 2; }
+        .pillar-row.reverse .img-col { order: 1; }
+        .pillar-label { color: var(--accent); text-transform: uppercase; font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; display: block; }
+        h2 { color: var(--secondary); font-size: 2.5rem; line-height: 1.2; margin-bottom: 20px; }
 
-        .pillar-label { color: var(--accent); text-transform: uppercase; font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; display: block; }
+        .full-img { width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-        .full-img {
-            width: 100%;
-            height: auto;
-            display: block;
+        /* --- LEADERSHIP GRID --- */
+        .leadership-section { background-color: #f8f9fa; }
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .leadership-card {
+            background: #fff;
+            padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary);
         }
+        .leadership-card strong { color: var(--primary); display: block; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* --- SLIDESHOW STYLES --- */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #000;
+        }
+        .mySlides1, .mySlides2 { display: none; width: 100%; height: 100%; object-fit: cover; }
+        .prev, .next {
+            cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px;
+            color: white; font-weight: bold; font-size: 18px; transition: 0.6s ease;
+            border-radius: 0 3px 3px 0; user-select: none; background-color: rgba(0,0,0,0.5);
+            z-index: 10; transform: translateY(-50%);
+        }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
 
         /* --- MOBILE OPTIMIZATION --- */
         @media (max-width: 768px) {
-            .nav-container { height: 60px; }
-            .nav-links { display: none; } /* Hides menu on mobile for simplicity */
-            .logo { font-size: 0.8rem; }
+            .nav-links { display: none; }
+            .hero { height: 70vh; padding-top: 80px; }
+            .hero-content { text-align: center; margin-left: 0; }
+            .hero-content h1 { font-size: 1.7rem; line-height: 1.2; }
+            .pga-member-line { justify-content: center; flex-direction: column; gap: 10px; margin-top: 15px; }
+            .hero-pga-logo { height: 45px; }
+            .hero-content p { font-size: 1rem; padding: 0 10px; }
             
-            .hero { height: 60vh; min-height: 400px; }
-            .hero-content { text-align: center; padding: 0 10px; }
-            .hero-content h1 { font-size: 1.6rem; }
-            .pga-member-line { flex-direction: column; gap: 5px; margin-top: 10px; }
-            .hero-pga-logo { height: 40px; }
-            .hero-content p { font-size: 1rem; }
-
-            .pillar-row { grid-template-columns: 1fr; gap: 30px; }
+            h2 { font-size: 1.8rem; }
+            .pillar-row { grid-template-columns: 1fr !important; gap: 40px; }
+            .pillar-row.reverse .text-col { order: 1; }
+            .pillar-row.reverse .img-col { order: 2; }
+            
+            .leadership-grid { grid-template-columns: 1fr; }
+            .slideshow-container { height: 350px; }
             .btn { width: 100%; }
         }
     </style>
@@ -218,36 +211,34 @@
                 <a href="#leadership">Leadership</a>
                 <a href="#business">Business</a>
                 <a href="#operations">Operations</a>
+                <a href="#instruction">Instruction</a>
             </div>
         </div>
     </nav>
 
     <div class="hero">
-        <video autoplay muted loop playsinline class="hero-video-bg">
-            <source src="images/header_vid.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
-        <div class="hero-content-overlay">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>
-                        Proven Leader.<br>
-                        Operations Expert.<br>
-                        Successful Entrepreneur.<br>
-                        <span class="pga-member-line">
-                            <img src="images/PGA_logo_color.png" class="hero-pga-logo" alt="PGA">
-                            PGA Member.
-                        </span>
-                    </h1>
-                    <p>Combining 15 years of industry excellence with executive business leadership.</p>
-                </div>
+        <div class="video-wrapper">
+            <video autoplay muted loop playsinline class="hero-video-bg">
+                <source src="images/header_vid.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container hero-content-overlay">
+            <div class="hero-content">
+                <h1>Proven Leader.<br>Operations Expert.<br>Successful Entrepreneur.<br>
+                    <span class="pga-member-line">
+                        <img src="images/PGA_logo_color.png" class="hero-pga-logo" alt="PGA">
+                        PGA Member.
+                    </span>
+                </h1>
+                <p>Bridging the gap between elite club operations and profitable business leadership.</p>
             </div>
         </div>
     </div>
 
     <div class="download-callout">
         <div class="container">
-            <a href="Professional_Resume.pdf" target="_blank" class="btn">Download Professional Resume (PDF)</a>
+            <a href="Professional_Resume.pdf" target="_blank" class="btn">Download Full Professional Resume (PDF)</a>
         </div>
     </div>
 
@@ -258,8 +249,7 @@
                     <span class="pillar-label">The Professional</span>
                     <h2>The Perspective of an Owner,<br>The Passion of a PGA Professional</h2>
                     <p>I view the golf industry through a unique dual lens: the hospitality of a PGA Professional and the discerning eye of a business owner. Currently serving at Desert Forest Golf Club, I specialize in delivering concierge level member and guest service while maintaining the rigorous operational standards required at a premier facility.</p>
-                    <p>My career path distinguishes me from the traditional golf professional. After early successes at prestigious venues like Tavistock Country Club and The ACE Club, I spent a decade in the executive seat founding and operating my own company, LoLo Juice.</p>
-                    <p>Today, I combine that executive acumen with modern operational expertise, bringing an owner’s mentality to the operation and a servant’s heart to the member experience.</p>
+                    <p>My career path distinguishes me from the traditional golf professional. After early successes at prestigious venues like Tavistock Country Club and The ACE Club, I spent a decade in the executive seat founding and operating my own company, LoLo Juice. That experience provided an education in self reliance and dedication, building a successful culture, driving revenue growth, and managing strict inventory controls.</p>
                 </div>
                 <div class="img-col">
                     <img src="images/profile_pic.jpg" alt="Max Krasuski" class="full-img">
@@ -268,232 +258,89 @@
         </div>
     </section>
 
-</body>
-</html>
-
-    <section id="leadership" class="section-padding" style="background: var(--secondary);">
+    <section id="leadership" class="section-padding leadership-section">
         <div class="container">
-            <div style="text-align: center; max-width: 800px; margin: 0 auto 40px auto;">
-                <h2 style="font-size: 2.5rem; color: var(--accent); margin-bottom: 10px; font-weight: 400; font-style: italic; font-family: Georgia, serif;">
-                    Leading with a Servant's Heart
-                </h2>
-            </div>
+            <span class="pillar-label">Core Competencies</span>
+            <h2>Strategic Leadership</h2>
             <div class="leadership-grid">
                 <div class="leadership-card">
-                    <strong>Leadership Philosophy</strong>
-                    <p>I don’t just manage operations; I serve as a steward of the club’s culture. Leadership requires a dual focus: internally, I empower the staff to execute the details that define the club’s excellence; externally, I engage the membership through visibility, personal connection, and a deep respect for the club’s traditions. The son of a coach, my approach to leadership has deep roots and has been honed by years in high-end golf operations and a decade as a business operator.</p>
+                    <strong>Business Acumen</strong>
+                    <p>Founder and operator of a successful multi-unit company. Proven expertise in P&L management, strategic planning, and brand development.</p>
                 </div>
                 <div class="leadership-card">
-                    <strong>Servant Leadership</strong>
-                    <p>Effective authority isn't about giving orders; it's about removing obstacles. Clear communication is the foundation of building a high-performing team environment, but that environment is sustained by action. I lead from the front, modeling the work ethic, presentation, and attention to detail I expect from my staff. My goal is to serve the team with the clarity and support they need, ensuring they have the confidence to anticipate needs and deliver superior service to members and guests.</p>
+                    <strong>Elite Operations</strong>
+                    <p>Advanced mastery of Golf Genius, Jonas, and Foretees. Orchestrating high-end member tournaments and seamless daily transitions.</p>
                 </div>
                 <div class="leadership-card">
-                    <strong>Mentorship & Development</strong>
-                    <p>I have found that the most rewarding aspect of leadership is lifting others up—championing their goals because their success is my success. My mentorship extends across every pillar of the operation, providing comprehensive training in Tournament Operations, Teaching and Coaching, Merchandising, and Business Management. By investing in their diverse interests, I not only build a high-performing team today but help shape the industry leaders of tomorrow.</p>
+                    <strong>Team Development</strong>
+                    <p>Expert in cultivating high-performance service cultures through empowering staff leadership and clear operational standards.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="business" class="section-padding">
+    <section id="operations" class="section-padding">
         <div class="container">
-            <div class="pillar-row" style="align-items: flex-start;">
+            <div class="pillar-row reverse">
                 <div class="text-col">
-                    <span class="pillar-label">Business Acumen</span>
-                    <h3 style="margin-top: 0;">An Owner’s Perspective on Growth</h3>
-                    <p>I approach the club’s financial health with the same discipline and agility I utilized to grow a successful private company. My philosophy is built on the belief that a profitable operation and an exceptional golf experience are the results of building trust, striving for efficiency, and data-driven decision-making.</p>
-                    <div style="background: #fdfaf0; border-left: 4px solid var(--accent); padding: 15px 20px; margin: 20px 0; border-radius: 0 4px 4px 0;">
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Optimizing staff schedules based on historical data to meet budget targets while maintaining consistent, high-level service standards.
-                            </li>
-                            <li style="margin-bottom: 0; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Driving event participation and retail loyalty by building a staff culture rooted relationships and consistency.
-                            </li>
-                        </ul>
-                    </div>
+                    <span class="pillar-label">Daily Operations</span>
+                    <h2>Professional Standards</h2>
+                    <p>Maintaining the integrity of the game through rigorous pace of play management, sophisticated merchandising, and impeccable facility presentation.</p>
                 </div>
                 <div class="img-col">
-                    <span class="gallery-caption">Merchandising Excellence</span>
                     <div class="slideshow-container">
+                        <img class="mySlides1" src="images/ops1.jpg">
+                        <img class="mySlides1" src="images/ops2.jpg">
+                        <img class="mySlides1" src="images/ops3.jpg">
                         <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
-                        <img src="images/merchandising_001.png" class="mySlides1 fade" style="display:block;">
-                        <img src="images/merchandising_002.png" class="mySlides1 fade">
-                        <img src="images/merchandising_003.png" class="mySlides1 fade">
-                        <img src="images/merchandising_004.png" class="mySlides1 fade">
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="pillar-row" style="align-items: flex-end; margin-top: 20px;">
-                <div class="text-col">
-                    <p><strong>Strategic Revenue Growth:</strong> I focus on maximizing every revenue stream available to the club, from optimized tee-sheet density to integrated player development programs. I design golf activities specifically to drive cross-departmental revenue, ensuring that on-course engagement translates into increased guest fee captures and Food & Beverage participation.</p>
-                    <p><strong>Operational Efficiency:</strong> Managing a business with perishable inventory taught me that capital must remain working. I apply this mindset to the golf shop by staying agile with offerings and analyzing sell-through rates to reflect demand. Beyond retail, I utilize data to optimize staff efficiency, ensuring service excellence is maintained without unnecessary overhead.</p>
-                    <div style="background: #fdfaf0; border-left: 4px solid var(--accent); padding: 15px 20px; margin: 0; border-radius: 0 4px 4px 0;">
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Managing inventory turnover and open-to-buy with an "owner-lens" to ensure capital remains fluid and responsive.
-                            </li>
-                            <li style="margin-bottom: 0; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Utilizing sales data to eliminate underperforming product lines and capitalizing on proven member and guest preferences.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+    <section id="instruction" class="section-padding leadership-section">
+        <div class="container">
+            <div class="pillar-row">
                 <div class="img-col">
-                    <span class="gallery-caption">Entrepreneurial Success (LoLo Juice)</span>
                     <div class="slideshow-container">
+                        <img class="mySlides2" src="images/instruction1.jpg">
+                        <img class="mySlides2" src="images/instruction2.jpg">
+                        <img class="mySlides2" src="images/instruction3.jpg">
                         <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
                         <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
-                        <img src="images/LoLo_001.jpg" class="mySlides2 fade" style="display:block;">
-                        <img src="images/LoLo_002.jpg" class="mySlides2 fade">
-                        <img src="images/LoLo_003.jpg" class="mySlides2 fade">
-                        <img src="images/LoLo_004.jpg" class="mySlides2 fade">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="operations" class="section-padding" style="background: #e9e9e9;">
-        <div class="container">
-            <div class="pillar-row reverse" style="align-items: flex-start;">
-                <div class="text-col">
-                    <span class="pillar-label">Operations</span>
-                    <h3 style="margin-top: 0;">Precision Behind the Experience</h3>
-                    <p>A premier golf operation consists of countless moving pieces, yet it should appear seamless to members and guests. I understand that excellence in service extends beyond face-to-face interactions; it requires anticipating needs, maintaining logical organization, and ensuring "ease of use" across all golf amenities.</p>
-                    <div style="background: #fdfaf0; border-left: 4px solid var(--accent); padding: 15px 20px; margin: 20px 0; border-radius: 0 4px 4px 0;">
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Focusing on logical organization and "ease of use" across all golf amenities to ensure a frictionless member experience.
-                            </li>
-                            <li style="margin-bottom: 0; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Proactively identifying and addressing potential pace-of-play issues before they impact the day's experience.
-                            </li>
-                        </ul>
-                    </div>
-                    <p><strong>Tournament Direction:</strong> I approach tournament coordination as a specialized project management task. Utilizing <strong>Golf Genius</strong>, I oversee every detail from initial planning and marketing to post-round execution. My focus is on implementing engaging, competitive formats while following <strong>USGA handicap recommendations</strong>.</p>
-                    <p><strong>Technology & Systems:</strong> Mastery of the industry’s core tools is a baseline requirement for modern golf leadership. I am proficient in online tee time platforms and modern POS systems, utilizing these tools to optimize tee sheet density and streamline member communication.</p>
-                    <p><strong>Staff Management & Training:</strong> I set the standard for my team by modeling the work ethic and professional presentation I expect. I focus on clear accountability and comprehensive training to develop a staff empowered to uphold the club's highest standards.</p>
-                </div>
-                <div class="img-col" style="display: flex; flex-direction: column; gap: 40px;">
-                    <img src="images/operations_precision.jpg" alt="Precision" class="full-img">
-                    <div style="display: flex; flex-direction: column; gap: 30px;">
-                        <img src="images/GG_logo.png" alt="Golf Genius" style="width: 100%; height: auto; display: block;">
-                        <img src="images/FT_logo.png" alt="ForeTees" style="width: 100%; height: auto; display: block;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="instruction" class="section-padding" style="background-color: #ffffff;">
-        <div class="container">
-            <div class="pillar-row" style="grid-template-columns: 350px 1fr; align-items: flex-start; gap: 50px;">
-                <div class="img-col">
-                    <div style="display: flex; flex-direction: column; gap: 30px;">
-                        <img src="images/gals_guests.jpg" alt="Flyer" class="full-img" style="max-height: 450px; object-fit: contain; width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
-                        <img src="images/short_game.jpg" alt="Flyer" class="full-img" style="max-height: 450px; object-fit: contain; width: 100%; border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #f0f0f0;">
                     </div>
                 </div>
                 <div class="text-col">
                     <span class="pillar-label">Instruction</span>
-                    <h3 style="margin-top: 0;">Developing the Player, Not Just the Swing</h3>
-                    <p>Effective golf instruction must be uniquely tailored to the individual. Beginning with the fundamentals of grip, posture and alignment, my instruction philosophy is not a "one-size-fits-all" model. I prioritize understanding a player’s fitness levels and physical restrictions before making any swing corrections that fit their specific body. When necessary, I utilize launch monitor and video analysis, to provide students with clear, data-backed insights that bridge the gap between "feel" and "real".</p>
-                    <div style="background: #fdfaf0; border-left: 4px solid var(--accent); padding: 15px 20px; margin: 20px 0; border-radius: 0 4px 4px 0;">
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Utilizing Trackman data and video analysis to provide students with actionable, technical clarity.
-                            </li>
-                            <li style="margin-bottom: 0; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Training a repeatable, effective motion tailored to the student's personal biomechanics and physical capabilities.
-                            </li>
-                        </ul>
-                    </div>
-                    <p><strong>Programming & Revenue Impact:</strong> Beyond individual lessons, I specialize in designing high-engagement programs like <strong>"Gals & Guests"</strong> and specialized <strong>Short Game Schools</strong>. These initiatives are designed to do more than lower scores; they are strategic tools that drive participation across club departments, from guest fee revenue to increased Food & Beverage activity.</p>
-                    <p><strong>Junior Golf Leadership:</strong> I have played an integral role for large-scale junior programs, including at <strong>Tavistock Country Club</strong>. My approach focuses on creating a fun and engaging environment that fosters a lifelong love for the game while building the next generation of active club members.</p>
-                    <p><strong>The Mental Game & Performance:</strong> I believe that while golf strategy is refined through analytics, athletic performance is sustained by a clear mind. My coaching bridges the gap between the range and the first tee by emphasizing a transition from conscious mechanics to instinctive execution. By refining a student's pre-shot routines and state of mind, I empower them to step over the ball with a singular focus: picking a target and delivering the shot.</p>
-                    <div style="background: #fdfaf0; border-left: 4px solid var(--accent); padding: 15px 20px; margin: 20px 0; border-radius: 0 4px 4px 0;">
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Designing cross-functional player development programs that drive revenue in Golf and F&B.
-                            </li>
-                            <li style="margin-bottom: 10px; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Managing comprehensive junior pipelines that engage families and secure the club's future membership.
-                            </li>
-                            <li style="margin-bottom: 0; padding-left: 25px; position: relative; font-size: 0.95rem; font-weight: 600; color: var(--secondary);">
-                                <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold;">→</span>
-                                Coaching the transition from mechanical thought to target-oriented performance for improved on-course scoring.
-                            </li>
-                        </ul>
-                    </div>
+                    <h2>Growing the Game</h2>
+                    <p>Delivering results-oriented instruction for all skill levels. Specializing in technical swing mechanics, short game proficiency, and the mental approach to tournament play.</p>
                 </div>
             </div>
         </div>
     </section>
-
-    <section id="contact" class="section-padding" style="background: var(--secondary); color: #fff;">
-        <div class="container" style="text-align: center;">
-            <span class="pillar-label" style="color: var(--accent);">Connect</span>
-            <h2 style="font-size: 2rem; margin-bottom: 20px; color: var(--accent);">Let’s Discuss the Future of Your Operation</h2>
-            <p style="max-width: 600px; margin: 0 auto 40px auto; font-size: 1.1rem; opacity: 0.9;">
-                I am currently based in <strong>Scottsdale, AZ</strong> and available for leadership opportunities in golf operations and business strategy.
-            </p>
-
-            <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 50px;">
-                <div style="text-align: center;">
-                    <strong style="display: block; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 5px;">Email</strong>
-                    <a href="mailto:max.krasuski@gmail.com" style="font-weight: 600; color: #fff; font-size: 1.1rem;">max.krasuski@gmail.com</a>
-                </div>
-                <div style="text-align: center;">
-                    <strong style="display: block; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 5px;">Phone</strong>
-                    <a href="tel:+12672408863" style="font-weight: 600; color: #fff; font-size: 1.1rem;">(267) 240-8863</a>
-                </div>
-                <div style="text-align: center;">
-                    <strong style="display: block; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 5px;">Status</strong>
-                    <a href="https://directory.pga.org/member/detail/745146633" target="_blank" style="font-weight: 600; color: #fff; font-size: 1.1rem;">PGA of America Profile</a>
-                </div>
-            </div>
-
-            <a href="Professional_Resume.pdf" target="_blank" class="btn" style="background: #fff; color: var(--secondary); border: none; padding: 15px 40px; font-size: 1rem;">Download Full Professional Resume (PDF)</a>
-        </div>
-    </section>
-
-    <footer style="background: #1a252f; color: #fff; padding: 30px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1);">
-        <div class="container">
-            <p style="font-size: 0.85rem; opacity: 0.6; margin-bottom: 0;">
-                &copy; 2026 Max A. Krasuski, PGA | Scottsdale, Arizona
-            </p>
-        </div>
-    </footer>
 
     <script>
-        let slideIndex = [1, 1];
-        let slideId = ["mySlides1", "mySlides2"];
-        function plusSlides(n, no) { showSlides(slideIndex[no] += n, no); }
+        let slideIndex = [1,1];
+        let slideId = ["mySlides1", "mySlides2"]
+        showSlides(1, 0);
+        showSlides(1, 1);
+
+        function plusSlides(n, no) {
+            showSlides(slideIndex[no] += n, no);
+        }
+
         function showSlides(n, no) {
             let i;
             let x = document.getElementsByClassName(slideId[no]);
             if (n > x.length) {slideIndex[no] = 1}    
             if (n < 1) {slideIndex[no] = x.length}
-            for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";  
+            }
             x[slideIndex[no]-1].style.display = "block";  
         }
     </script>
 </body>
-
 </html>
-
-
-
