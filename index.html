@@ -244,38 +244,27 @@
 
         /* --- SLIDESHOW STYLES --- */
         .gallery-stack { display: flex; flex-direction: column; gap: 40px; }
+        
         .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 450px; 
-            overflow: hidden;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            background: #eee;
+    position: relative;
+    width: 100%;
+    height: 450px; 
+    overflow: hidden;
+    border-radius: 6px;
+    background: #ffffff; /* Changed from #eee to #ffffff */
+}
+
+        .slideshow-container img {
+          display: none; /* Controlled by JS */
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
+          object-fit: contain;
+          border: none;
+          outline: none;
+          box-shadow: none;
         }
 
-        .mySlides1, .mySlides2 {
-            display: none; 
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            object-fit: contain;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            margin-top: -22px;
-            padding: 16px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            background-color: rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-        .next { right: 0; }
         .fade { animation-name: fade; animation-duration: 0.5s; }
         @keyframes fade { from {opacity: 0.4} to {opacity: 1} }
 
@@ -287,6 +276,25 @@
             color: var(--secondary);
             font-weight: 700;
             margin-bottom: 8px;
+        }
+
+        /* Dot styles */
+        .dot-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            display: inline-block;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: var(--accent);
         }
 
         /* --- MOBILE RESPONSIVENESS --- */
@@ -310,26 +318,51 @@
         }
 
         @media (max-width: 768px) {
-            .section-padding { padding: 40px 0; }
-            .pillar-row { grid-template-columns: 1fr !important; gap: 30px; }
-            .pillar-row.reverse .text-col { order: 1; }
-            .pillar-row.reverse .img-col { order: 2; }
-            
-            .hero-video-bg { height: 500px; object-fit: cover; }
-            .hero-content h1 { font-size: 2.2rem; }
-            .hero-content p { font-size: 1rem; }
-            .hero-content { text-align: center; padding: 0 20px; }
-            .hero-container { justify-content: center; }
-            .pga-member-line { flex-direction: column; gap: 10px; }
-            .hero-pga-logo { height: 50px; }
+    /* Prevent horizontal "wobble" */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+    }
 
-            .leadership-grid { grid-template-columns: 1fr; }
-            .slideshow-container { height: 300px; }
-            
-            #instruction .pillar-row { grid-template-columns: 1fr !important; }
-            
-            .contact-links { gap: 30px !important; }
-        }
+    .section-padding { padding: 40px 0; }
+    
+    /* Force stack all columns */
+    .pillar-row { 
+        grid-template-columns: 1fr !important; 
+        gap: 30px; 
+    }
+    
+    /* Ensure text stays on top regardless of HTML order */
+    .pillar-row.reverse .text-col { order: 1; }
+    .pillar-row.reverse .img-col { order: 2; }
+    
+    /* Shrink the hero to fit mobile screens better */
+    .hero-video-bg { height: 400px; }
+    .hero-content h1 { font-size: 1.8rem; }
+    .hero-content p { font-size: 1rem; }
+    .hero-container { justify-content: center; }
+    .hero-content { text-align: center; }
+    
+    /* Prevent slideshow from dominating the small screen */
+    .slideshow-container { height: 280px; }
+    
+    /* Make buttons easy to tap with a thumb */
+    .btn {
+        width: 100%;
+        padding: 15px 20px;
+    }
+
+    /* Fix the Instruction section layout */
+    #instruction .pillar-row { 
+        grid-template-columns: 1fr !important; 
+    }
+    
+    /* Ensure images don't overflow */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
     </style>
 </head>
 <body>
@@ -451,13 +484,17 @@
                 </div>
                 <div class="img-col">
                     <span class="gallery-caption">Merchandising Excellence</span>
-                    <div class="slideshow-container">
-                        <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+                    <div class="slideshow-container" id="gallery-0">
                         <img src="images/merchandising_001.png" class="mySlides1 fade" style="display:block;">
                         <img src="images/merchandising_002.png" class="mySlides1 fade">
                         <img src="images/merchandising_003.png" class="mySlides1 fade">
                         <img src="images/merchandising_004.png" class="mySlides1 fade">
+                    </div>
+                    <div class="dot-container">
+                        <span class="dot active" onclick="currentSlide(0, 0)"></span>
+                        <span class="dot" onclick="currentSlide(1, 0)"></span>
+                        <span class="dot" onclick="currentSlide(2, 0)"></span>
+                        <span class="dot" onclick="currentSlide(3, 0)"></span>
                     </div>
                 </div>
             </div>
@@ -481,13 +518,17 @@
                 </div>
                 <div class="img-col">
                     <span class="gallery-caption">Entrepreneurial Success (LoLo Juice)</span>
-                    <div class="slideshow-container">
-                        <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
+                    <div class="slideshow-container" id="gallery-1">
                         <img src="images/LoLo_001.jpg" class="mySlides2 fade" style="display:block;">
                         <img src="images/LoLo_002.jpg" class="mySlides2 fade">
                         <img src="images/LoLo_003.jpg" class="mySlides2 fade">
                         <img src="images/LoLo_004.jpg" class="mySlides2 fade">
+                    </div>
+                    <div class="dot-container">
+                        <span class="dot active" onclick="currentSlide(0, 1)"></span>
+                        <span class="dot" onclick="currentSlide(1, 1)"></span>
+                        <span class="dot" onclick="currentSlide(2, 1)"></span>
+                        <span class="dot" onclick="currentSlide(3, 1)"></span>
                     </div>
                 </div>
             </div>
@@ -621,7 +662,6 @@
             navList.classList.toggle('active');
         });
 
-        // Close menu when link is clicked
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navList.classList.remove('active');
@@ -629,21 +669,53 @@
         });
 
         // SLIDESHOW LOGIC
-        let slideIndex = [1, 1];
-        let slideId = ["mySlides1", "mySlides2"];
+        let slideIndexes = [0, 0];
+        let autoPlayIntervals = [null, null];
+
+        // Initialize Slides
+        showSlidesGallery(0, 0);
+        showSlidesGallery(1, 0);
         
-        function plusSlides(n, no) { showSlides(slideIndex[no] += n, no); }
-        
-        function showSlides(n, no) {
-            let i;
-            let x = document.getElementsByClassName(slideId[no]);
-            if (n > x.length) {slideIndex[no] = 1}    
-            if (n < 1) {slideIndex[no] = x.length}
-            for (i = 0; i < x.length; i++) { x[i].style.display = "none"; }
-            x[slideIndex[no]-1].style.display = "block";  
+        // Start AutoPlay
+        startAutoPlay(0);
+        startAutoPlay(1);
+
+        function currentSlide(n, galleryNum) {
+            stopAutoPlay(galleryNum); // Stop auto when user clicks
+            showSlidesGallery(galleryNum, n);
+        }
+
+        function showSlidesGallery(galleryNum, n) {
+            let slideClass = galleryNum === 0 ? "mySlides1" : "mySlides2";
+            let slides = document.getElementsByClassName(slideClass);
+            let dotContainers = document.querySelectorAll(".dot-container");
+            let dots = dotContainers[galleryNum].getElementsByClassName("dot");
+
+            if (n >= slides.length) n = 0;
+            if (n < 0) n = slides.length - 1;
+            slideIndexes[galleryNum] = n;
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+
+            slides[n].style.display = "block";
+            dots[n].classList.add("active");
+        }
+
+        function startAutoPlay(galleryNum) {
+            autoPlayIntervals[galleryNum] = setInterval(() => {
+                slideIndexes[galleryNum]++;
+                showSlidesGallery(galleryNum, slideIndexes[galleryNum]);
+            }, 5000); // Change image every 5 seconds
+        }
+
+        function stopAutoPlay(galleryNum) {
+            clearInterval(autoPlayIntervals[galleryNum]);
         }
     </script>
 </body>
 </html>
-
-
