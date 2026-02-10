@@ -281,20 +281,25 @@
             .leadership-grid { grid-template-columns: 1fr; }
             .slideshow-container { height: 300px; }
         /* Mobile Optimization */
+/* UPDATED MOBILE FIX */
 @media (max-width: 768px) {
     .hero-section {
-        height: 60vh; /* Shortens the video area so it doesn't swallow the screen */
-        padding-top: 80px;
+        height: 60vh !important; 
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 20px !important;
     }
     .hero-text h1 {
-        font-size: 2.2rem; /* Shrinks the large text to fit narrow screens */
-        line-height: 1.2;
-        margin-bottom: 10px;
+        font-size: 1.6rem !important; /* Smaller to prevent overlapping */
+        line-height: 1.2 !important;
+        margin-top: 40px !important;
     }
     .hero-text p {
-        font-size: 1.1rem;
-        margin-top: 20px;
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
     }
+}
     .resume-button {
         width: 90%; /* Makes the button easier to tap with a thumb */
         font-size: 1rem;
@@ -593,4 +598,5 @@
 </body>
 
 </html>
+
 
