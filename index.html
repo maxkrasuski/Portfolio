@@ -279,7 +279,27 @@
             .pga-member-line { flex-direction: column; }
             .leadership-grid { grid-template-columns: 1fr; }
             .slideshow-container { height: 300px; }
-        }
+        /* Mobile Optimization */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 60vh; /* Shortens the video area so it doesn't swallow the screen */
+        padding-top: 80px;
+    }
+    .hero-text h1 {
+        font-size: 2.2rem; /* Shrinks the large text to fit narrow screens */
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+    .hero-text p {
+        font-size: 1.1rem;
+        margin-top: 20px;
+    }
+    .resume-button {
+        width: 90%; /* Makes the button easier to tap with a thumb */
+        font-size: 1rem;
+        padding: 15px;
+    }
+}}
     </style>
 </head>
 <body>
@@ -570,4 +590,5 @@
         }
     </script>
 </body>
+
 </html>
