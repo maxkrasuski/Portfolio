@@ -24,14 +24,13 @@
             line-height: 1.6;
             background-color: #fff;
             scroll-behavior: smooth;
-            overflow-x: hidden; /* Prevents white space on right side */
         }
 
         p { margin-bottom: 1rem; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* --- UTILITIES --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         .btn {
             display: inline-block;
@@ -43,9 +42,10 @@
             letter-spacing: 0.5px;
             border: 2px solid var(--primary);
             cursor: pointer;
+            text-align: center;
         }
 
-        .section-padding { padding: 30px 0; }
+        .section-padding { padding: 60px 0; }
         
         h1, h2, h3 { color: var(--secondary); margin-bottom: 15px; }
 
@@ -90,6 +90,20 @@
             color: var(--secondary);
         }
 
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
@@ -110,6 +124,8 @@
         .hero-video-bg {
             width: 100%;
             height: auto;
+            min-height: 400px;
+            object-fit: cover;
             display: block;
             z-index: 1;
         }
@@ -117,7 +133,7 @@
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.15); 
+            background: rgba(0, 0, 0, 0.3); 
             z-index: 2;
         }
 
@@ -189,8 +205,7 @@
         .pillar-label { color: var(--accent); text-transform: uppercase; font-weight: 700; font-size: 0.8rem; margin-bottom: 10px; display: block; }
 
         .full-img {
-            width: 100% !important;
-            max-width: 100% !important;
+            width: 100%;
             height: auto;
             display: block;
             border-radius: 8px;
@@ -274,30 +289,46 @@
             margin-bottom: 8px;
         }
 
-        /* --- MOBILE OPTIMIZATION OVERRIDES --- */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .nav-container { height: 60px; }
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #fff;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { margin: 15px 0; font-size: 1rem; }
+            .menu-toggle { display: flex; margin-right: 20px; }
             .logo { font-size: 0.9rem; }
-            .pga-logo-nav { height: 35px; }
+            .pga-logo-nav { height: 40px; }
+        }
 
-            .hero { padding-top: 60px; height: 65vh; min-height: 400px; }
-            .hero-content-overlay { align-items: center; }
-            .hero-container { justify-content: center; }
-            .hero-content { text-align: center; width: 100%; }
-            .hero-content h1 { font-size: 1.6rem !important; line-height: 1.1; margin-top: 30px; }
-            .hero-pga-logo { height: 45px; margin: 10px auto; display: block; }
-            .pga-member-line { flex-direction: column; width: 100%; }
-            .hero-content p { font-size: 1rem; margin-top: 10px; }
-
+        @media (max-width: 768px) {
+            .section-padding { padding: 40px 0; }
             .pillar-row { grid-template-columns: 1fr !important; gap: 30px; }
             .pillar-row.reverse .text-col { order: 1; }
             .pillar-row.reverse .img-col { order: 2; }
+            
+            .hero-video-bg { height: 500px; object-fit: cover; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; }
+            .hero-content { text-align: center; padding: 0 20px; }
+            .hero-container { justify-content: center; }
+            .pga-member-line { flex-direction: column; gap: 10px; }
+            .hero-pga-logo { height: 50px; }
+
             .leadership-grid { grid-template-columns: 1fr; }
             .slideshow-container { height: 300px; }
-            .full-img { width: 100% !important; margin: 0 auto; }
-            .profile-sizing { width: 100%; }
-            .section-padding { padding: 40px 0; }
+            
+            #instruction .pillar-row { grid-template-columns: 1fr !important; }
+            
+            .contact-links { gap: 30px !important; }
         }
     </style>
 </head>
@@ -309,7 +340,14 @@
                 <img src="images/PGA_logo.png" alt="PGA Member" class="pga-logo-nav">
                 <div class="logo">MAX A. KRASUSKI, PGA</div>
             </div>
-            <div class="nav-links">
+            
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-links" id="nav-list">
                 <a href="#about">About</a>
                 <a href="#leadership">Leadership</a>
                 <a href="#business">Business</a>
@@ -547,7 +585,7 @@
                 I am currently based in <strong>Scottsdale, AZ</strong> and available for leadership opportunities in golf operations and business strategy.
             </p>
 
-            <div style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 50px;">
+            <div class="contact-links" style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-bottom: 50px;">
                 <div style="text-align: center;">
                     <strong style="display: block; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 5px;">Email</strong>
                     <a href="mailto:max.krasuski@gmail.com" style="font-weight: 600; color: #fff; font-size: 1.1rem;">max.krasuski@gmail.com</a>
@@ -575,9 +613,27 @@
     </footer>
 
     <script>
+        // MOBILE MENU TOGGLE
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // SLIDESHOW LOGIC
         let slideIndex = [1, 1];
         let slideId = ["mySlides1", "mySlides2"];
+        
         function plusSlides(n, no) { showSlides(slideIndex[no] += n, no); }
+        
         function showSlides(n, no) {
             let i;
             let x = document.getElementsByClassName(slideId[no]);
