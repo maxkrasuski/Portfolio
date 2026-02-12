@@ -279,23 +279,39 @@
         }
 
         /* Dot styles */
-        .dot-container {
-            text-align: center;
-            margin-top: 10px;
-        }
-        .dot {
-            height: 12px;
-            width: 12px;
-            margin: 0 5px;
-            display: inline-block;
-            border-radius: 50%;
-            background-color: #ccc;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .dot.active {
-            background-color: var(--accent);
-        }
+        /* --- UPDATED DOT STYLES (OVERLAY) --- */
+.dot-container {
+    position: absolute;
+    bottom: 20px; /* Distance from the bottom of the image */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the dots perfectly */
+    z-index: 10; /* Ensures dots stay above the images */
+    text-align: center;
+    margin-top: 0; 
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 6px;
+    display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background-color: #ffffff; /* Solid white for active dot */
+    transform: scale(1.2); /* Slightly larger for active dot */
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Ensure the parent image container is the reference point */
+.img-col {
+    position: relative;
+}
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 992px) {
@@ -485,17 +501,18 @@
                 <div class="img-col">
                     <span class="gallery-caption">Merchandising Excellence</span>
                     <div class="slideshow-container" id="gallery-0">
-                        <img src="images/merchandising_001.png" class="mySlides1 fade" style="display:block;">
-                        <img src="images/merchandising_002.png" class="mySlides1 fade">
-                        <img src="images/merchandising_003.png" class="mySlides1 fade">
-                        <img src="images/merchandising_004.png" class="mySlides1 fade">
-                    </div>
-                    <div class="dot-container">
-                        <span class="dot active" onclick="currentSlide(0, 0)"></span>
-                        <span class="dot" onclick="currentSlide(1, 0)"></span>
-                        <span class="dot" onclick="currentSlide(2, 0)"></span>
-                        <span class="dot" onclick="currentSlide(3, 0)"></span>
-                    </div>
+    <img src="images/merchandising_001.png" class="mySlides1 fade" style="display:block;">
+    <img src="images/merchandising_002.png" class="mySlides1 fade">
+    <img src="images/merchandising_003.png" class="mySlides1 fade">
+    <img src="images/merchandising_004.png" class="mySlides1 fade">
+    
+    <div class="dot-container">
+        <span class="dot active" onclick="currentSlide(0, 0)"></span>
+        <span class="dot" onclick="currentSlide(1, 0)"></span>
+        <span class="dot" onclick="currentSlide(2, 0)"></span>
+        <span class="dot" onclick="currentSlide(3, 0)"></span>
+    </div>
+</div>
                 </div>
             </div>
 
@@ -519,17 +536,18 @@
                 <div class="img-col">
                     <span class="gallery-caption">Entrepreneurial Success (LoLo Juice)</span>
                     <div class="slideshow-container" id="gallery-1">
-                        <img src="images/LoLo_001.jpg" class="mySlides2 fade" style="display:block;">
-                        <img src="images/LoLo_002.jpg" class="mySlides2 fade">
-                        <img src="images/LoLo_003.jpg" class="mySlides2 fade">
-                        <img src="images/LoLo_004.jpg" class="mySlides2 fade">
-                    </div>
-                    <div class="dot-container">
-                        <span class="dot active" onclick="currentSlide(0, 1)"></span>
-                        <span class="dot" onclick="currentSlide(1, 1)"></span>
-                        <span class="dot" onclick="currentSlide(2, 1)"></span>
-                        <span class="dot" onclick="currentSlide(3, 1)"></span>
-                    </div>
+    <img src="images/merchandising_001.png" class="mySlides1 fade" style="display:block;">
+    <img src="images/merchandising_002.png" class="mySlides1 fade">
+    <img src="images/merchandising_003.png" class="mySlides1 fade">
+    <img src="images/merchandising_004.png" class="mySlides1 fade">
+    
+    <div class="dot-container">
+        <span class="dot active" onclick="currentSlide(0, 0)"></span>
+        <span class="dot" onclick="currentSlide(1, 0)"></span>
+        <span class="dot" onclick="currentSlide(2, 0)"></span>
+        <span class="dot" onclick="currentSlide(3, 0)"></span>
+    </div>
+</div>
                 </div>
             </div>
         </div>
@@ -719,6 +737,7 @@
     </script>
 </body>
 </html>
+
 
 
 
